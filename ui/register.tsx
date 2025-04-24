@@ -12,9 +12,10 @@ export default function RegisterUi(){
     //router URL
     const router = useRouter()
 
-    //flash messages
+    //flash messages & loading
     const [success, setSucess] = useState("")
     const [error, setError] = useState("")
+    const [loading, setloading] = useState(false)
 
     //set image url controller
     const [imageSetter, setImageSetter] = useState <File | null> (null)
@@ -62,7 +63,11 @@ export default function RegisterUi(){
     async function handleSubmiteReg(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         console.log("User:", formData);
-        
+
+        setloading(true)
+        setError("")
+        setSucess("")
+
         let cloudinaryImage = ""
 
         try {
@@ -123,6 +128,8 @@ export default function RegisterUi(){
                     setError("");
                 }, 6000);
             }
+        }finally{
+            setloading(false)
         }
     }
     
@@ -252,13 +259,18 @@ export default function RegisterUi(){
                         ></i>
                     </div>
 
-                    {/* Submit Button */}
-                    <button 
-                    type="submit"
-                    className="w-full py-3 px-4 bg-green-600 hover:bg-green-700 text-white font-medium rounded-md transition-colors shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
-                    >
-                        Sign Up
-                    </button>
+                    { /* Submit Button */
+                    
+                        loading? <div className=" mx-auto w-6 h-6 border-2 border-blue-300 border-t-transparent rounded-full animate-spin"></div> :
+                        <button 
+                        type="submit"
+                        className="w-full py-3 px-4 bg-green-600 hover:bg-green-700 text-white font-medium rounded-md transition-colors shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+                        >
+                            Sign Up
+                        </button>
+                    
+                    }
+
                 </form>
                 <div className="justify-center p-4 text-gray-800 text-l text-bold">Already have an account? <Link style={{color:"goldenrod",fontWeight:"bolder",textDecoration:"underline"}} href={"/login"}>Sign In</Link></div>
             </div>

@@ -9,10 +9,13 @@ import { FirebaseError } from "firebase/app";
 
 export default function LoginUi() {
     const router = useRouter();
+    
     const [showPassword, setShowPassword] = useState(false);
     const [formData, setFormData] = useState({ email: "", password: "" });
+
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
+    const [loading, setloading] = useState(false)
 
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
         const { name, value } = e.target;
@@ -93,6 +96,8 @@ export default function LoginUi() {
             else {
                 setError("An unknown error occurred!");
             }
+        }finally{
+            setloading(false)
         }
         
     }
@@ -138,7 +143,18 @@ export default function LoginUi() {
                                 style={{ fontSize: "20px", color: "gray" }}
                             />
                         </div>
-                        <button type="submit" className="w-full py-3 bg-green-600 text-white rounded-md font-medium">Sign In</button>
+                        { /* Submit Button */
+                    
+                            loading? <div className=" mx-auto w-6 h-6 border-2 border-blue-300 border-t-transparent rounded-full animate-spin"></div> :
+                            <button 
+                            type="submit"
+                            className="w-full py-3 px-4 bg-green-600 hover:bg-green-700 text-white font-medium rounded-md transition-colors shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+                            >
+                                Sign In
+                            </button>
+                
+                        }
+
                     </form>
                     <div className="justify-center p-4 text-gray-800 text-l text-bold">Dont&apos;t have an account? <Link style={{color:"goldenrod",fontWeight:"bolder",textDecoration:"underline"}} href={"/register"}>Sign Up</Link></div>
                 </div>
