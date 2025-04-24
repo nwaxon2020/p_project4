@@ -140,7 +140,7 @@ export default function LoginUi() {
                         </div>
                         <button type="submit" className="w-full py-3 bg-green-600 text-white rounded-md font-medium">Sign In</button>
                     </form>
-                    <div className="justify-center p-4 text-gray-800 text-l text-bold">Already have an account? <Link style={{color:"goldenrod",fontWeight:"bolder",textDecoration:"underline"}} href={"/register"}>Sign Up</Link></div>
+                    <div className="justify-center p-4 text-gray-800 text-l text-bold">Dont&apos;t have an account? <Link style={{color:"goldenrod",fontWeight:"bolder",textDecoration:"underline"}} href={"/register"}>Sign Up</Link></div>
                 </div>
             }
 
