@@ -148,7 +148,7 @@ export default function RegisterUi(){
                             <div className="relative w-32 h-32 rounded-full bg-gray-100 overflow-hidden border-2 border-dashed border-gray-300 hover:border-blue-400 transition-colors group">
                                 {/* Preview Image (hidden by default) */}
                                 <img 
-                                    src={showProfileImge ||"./default-profile.png" }
+                                    src={showProfileImge || "./profileMe.png"}
                                     alt={formData.firstName}
                                     className={`absolute z-20 inset-0 w-full h-full object-cover ${!showProfileImge && "hidden"}`}
                                     id="preview" 

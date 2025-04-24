@@ -9,7 +9,7 @@ import { FirebaseError } from "firebase/app";
 
 export default function LoginUi() {
     const router = useRouter();
-    
+
     const [showPassword, setShowPassword] = useState(false);
     const [formData, setFormData] = useState({ email: "", password: "" });
 
@@ -26,7 +26,7 @@ export default function LoginUi() {
         e.preventDefault();
         setError("");
         setSuccess("");
-
+        setloading(true)
         try {
             const userCredential = await signInWithEmailAndPassword(auth, formData.email, formData.password);
             const user = userCredential.user;
@@ -69,7 +69,7 @@ export default function LoginUi() {
             if (error instanceof FirebaseError) {
                 switch (error.code) {
                     case "auth/invalid-credential":
-                        setError("User not found...please ");
+                        setError("Invalid Email Or Password...");
                         break;
                     case "auth/wrong-password":
                         setError("Incorrect password.");
@@ -104,7 +104,7 @@ export default function LoginUi() {
 
     return (
         <>
-            {error && <p className="bg-red-700 text-center text-white p-2 font-bold">{error}{error==="User not found...please " && <Link className="text-blue-400 font-bold underline hover:text-blue-700" href={"/register"}>Sign Up</Link>} !!!</p>}
+            {error && <p className="bg-red-700 text-center text-white p-2 font-bold">{error} !!!</p>}
             {success && <p className="bg-white text-center text-black p-2 font-bold">{success}</p>}
             {error === "Please verify your email before logging in."?
             
