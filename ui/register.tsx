@@ -98,7 +98,7 @@ export default function RegisterUi(){
             //const verification = process.env.NODE_ENV === "production"? process.env.NEXT_PUBLIC_URL as string  : "http://localhost:3000/login"
             // Send Email Verification
             await sendEmailVerification(user, {
-                url: "http://localhost:3000/login",
+                url: "https://bigchat-dun.vercel.app/login",
                 handleCodeInApp: false
             });
 
