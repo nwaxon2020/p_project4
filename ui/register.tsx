@@ -95,10 +95,10 @@ export default function RegisterUi(){
 
             localStorage.setItem("userInfo", JSON.stringify({...formData, profileImage:cloudinaryImage}))
     
-            //const verification = process.env.NODE_ENV === "production"? process.env.NEXT_PUBLIC_URL as string  : "http://localhost:3000/login"
             // Send Email Verification
+            const verification = process.env.NODE_ENV === "production"? process.env.NEXT_PUBLIC_URL as string  : "http://localhost:3000/login"
             await sendEmailVerification(user, {
-                url: "https://bigchat-dun.vercel.app",
+                url: verification,
                 handleCodeInApp: false
             });
 
