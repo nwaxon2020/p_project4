@@ -97,7 +97,7 @@ export default function RegisterUi(){
 
             // Send Email Verification
             await sendEmailVerification(user, {
-                url: "http://localhost:3000/login",
+                url: process.env.NODE_ENV === "production"? "https://bigchat-dun.vercel.app/login" : "http://localhost:3000/login",
                 handleCodeInApp: false
             });
 
